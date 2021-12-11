@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "dirtcheap",
+  "version": "${version}",
+
+  "name": "DirtCheap Mod",
+  "description": "Dirt must be dirt cheap!",
+  "authors": [
+    "Pintér Gábor <pinter.gabor@gmx.at>"
+  ],
+  "contact": {
+    "homepage": "https://pintergabor.eu/en/minecraft/mods/dirtcheap/",
+    "sources": "https://gitlab.com/pintergabor/dirtcheap"
+  },
+
+  "license": "MIT",
+  "icon": "assets/dirtcheap/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "eu.pintergabor.dirtcheap.DirtCheapMod"
+    ]
+  },
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.5"
+  }
+}
