@@ -9,3 +9,7 @@ of dirt blocks by mixing them with cheap, easily renewable items.
 ## License
 
 Standard MIT license. Feel free to learn from it and incorporate it in your own projects.
+
+## Source code
+
+https://gitlab.com/pintergabor/dirtcheap.git
