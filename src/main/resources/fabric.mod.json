@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "eu.pintergabor.dirtcheap.DirtCheapMod"
+    ],
+    "fabric-datagen": [
+      "eu.pintergabor.dirtcheap.DirtCheapModDataGenerator"
     ]
   },
 
