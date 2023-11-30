@@ -1,34 +1,31 @@
 {
-	"schemaVersion": 1,
-	"id": "dirtcheap",
-	"version": "${version}",
-	"name": "DirtCheap",
-	"description": "This is an example description! Tell everyone what your mod is about!",
-	"authors": [
-		"Me!"
-	],
-	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
-	},
-	"license": "CC0-1.0",
-	"icon": "assets/dirtcheap/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-          "eu.pintergabor.dirtcheap.DirtCheapMod"
-		],
-		"fabric-datagen": [
-			"eu.pintergabor.dirtcheap.DirtCheapModDataGenerator"
-		]
-	},
-	"depends": {
-		"fabricloader": ">=0.14.25",
-		"minecraft": "~1.20.2",
-		"java": ">=17",
-		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
-	}
+  "schemaVersion": 1,
+  "id": "dirtcheap",
+  "version": "${version}",
+  "name": "DirtCheap",
+  "description": "Dirt must be dirt cheap!",
+  "authors": [
+    "Pintér Gábor <pinter.gabor@gmx.at>"
+  ],
+  "contact": {
+    "homepage": "https://pintergabor.eu/en/minecraft/mods/dirtcheap/",
+    "sources": "https://gitlab.com/pintergabor/dirtcheap"
+  },
+  "license": "MIT",
+  "icon": "assets/dirtcheap/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "eu.pintergabor.dirtcheap.DirtCheapMod"
+    ],
+    "fabric-datagen": [
+      "eu.pintergabor.dirtcheap.DirtCheapModDataGenerator"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.25",
+    "minecraft": "~1.20.2",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
 }
