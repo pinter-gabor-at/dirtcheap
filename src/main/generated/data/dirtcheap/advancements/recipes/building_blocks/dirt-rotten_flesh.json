@@ -43,6 +43,5 @@
     "recipes": [
       "minecraft:dirt-rotten_flesh"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

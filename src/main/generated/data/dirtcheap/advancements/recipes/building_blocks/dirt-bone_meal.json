@@ -43,6 +43,5 @@
     "recipes": [
       "minecraft:dirt-bone_meal"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

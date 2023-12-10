@@ -12,19 +12,19 @@
     "sources": "https://gitlab.com/pintergabor/dirtcheap"
   },
   "license": "MIT",
-  "icon": "assets/dirtcheap/icon.png",
+  "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "eu.pintergabor.dirtcheap.DirtCheapMod"
+      "eu.pintergabor.dirtcheap.Mod"
     ],
     "fabric-datagen": [
-      "eu.pintergabor.dirtcheap.DirtCheapModDataGenerator"
+      "eu.pintergabor.dirtcheap.Datagen"
     ]
   },
   "depends": {
-    "fabricloader": ">=0.14.25",
-    "minecraft": "~1.20.2",
+    "fabricloader": ">=0.15.1",
+    "minecraft": "~1.20.3",
     "java": ">=17",
     "fabric-api": "*"
   }

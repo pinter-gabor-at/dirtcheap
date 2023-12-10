@@ -6,16 +6,20 @@ Although there are complicated ways to create dirt from cobblestone, I do not li
 So I made this mod to make dirt really cheap by adding a few recipes that allow duplication
 of dirt blocks by mixing them with cheap, easily renewable items. 
 
+![Recipe1](images/recipe1.png) ![Recipe2](images/recipe2.png)
+
 ## License
 
 Standard MIT license. Feel free to learn from it and incorporate it in your own projects.
 
 ## Source code
 
-https://gitlab.com/pintergabor/dirtcheap.git
+Available on [GitLab](https://gitlab.com/pintergabor/dirtcheap.git) or on [GitHub](https://github.com/pinter-gabor-at/dirtcheap.git).
 
 ## For developers
 
 Quite often, when I start learning programming on a new platform, I find even the simplest examples too complicated.
 Tutorials, written by experts, with years of experience programming on that platform, sometimes forget how difficult those first step are.
 This is why I decided to make my first, very simple, Minecraft mods publicly available.
+
+This mod is probably the simplest possible which adds something usable to Minecraft. The source code is short, and fully documented. It is a good starting point for anyone new to modding.  
