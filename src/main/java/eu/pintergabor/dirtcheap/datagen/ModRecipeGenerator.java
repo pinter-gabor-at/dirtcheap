@@ -1,5 +1,6 @@
 package eu.pintergabor.dirtcheap.datagen;
 
+import eu.pintergabor.dirtcheap.Global;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeExporter;
@@ -32,7 +33,9 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                     .input(Items.DIRT)
                     .criterion(hasItem(Items.DIRT), conditionsFromItem(Items.DIRT))
                     .criterion(hasItem(i), conditionsFromItem(i))
-                    .offerTo(exporter, new Identifier(getRecipeName(Items.DIRT) + "-" + getRecipeName(i)));
+                    .offerTo(exporter, Identifier.of(
+                            Global.MODID,
+                            getRecipeName(Items.DIRT) + "-" + getRecipeName(i)));
         }
     }
 }
