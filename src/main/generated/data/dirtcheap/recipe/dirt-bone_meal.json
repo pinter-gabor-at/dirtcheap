@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "building",
   "ingredients": [
-    {
-      "item": "minecraft:bone_meal"
-    },
-    {
-      "item": "minecraft:dirt"
-    }
+    "minecraft:bone_meal",
+    "minecraft:dirt"
   ],
   "result": {
     "count": 2,
