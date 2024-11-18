@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "building",
   "ingredients": [
-    {
-      "item": "minecraft:rotten_flesh"
-    },
-    {
-      "item": "minecraft:dirt"
-    }
+    "minecraft:rotten_flesh",
+    "minecraft:dirt"
   ],
   "result": {
     "count": 2,
