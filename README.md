@@ -8,6 +8,10 @@ of dirt blocks by mixing them with cheap, easily renewable items.
 
 ![Recipe1](images/recipe1.png) ![Recipe2](images/recipe2.png)
 
+Since V1.1.0 there are two more recipes to create dirt from sand and clay.
+
+![Recipe3](images/recipe3.png) ![Recipe4](images/recipe4.png)
+
 ## License
 
 Standard MIT license. Feel free to learn from it and incorporate it in your own projects.
