@@ -38,6 +38,22 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                             .offerTo(exporter,
                                     Global.MODID + ":" + getRecipeName(Items.DIRT) + "-" + getRecipeName(i));
                 }
+                // Generate two shaped recipes:
+                // Mix SAND or CLAY with large amount of BONE_MEAL and ROTTEN_FLESH to create DIRT.
+                for (Item i : new Item[]{Items.CLAY, Items.SAND}) {
+                    createShaped(RecipeCategory.BUILDING_BLOCKS, Items.DIRT)
+                            .pattern("FBF")
+                            .pattern("BOB")
+                            .pattern("FBF")
+                            .input('B', Items.BONE_MEAL)
+                            .input('F', Items.ROTTEN_FLESH)
+                            .input('O', i)
+                            .criterion(hasItem(Items.BONE_MEAL), conditionsFromItem(Items.BONE_MEAL))
+                            .criterion(hasItem(Items.ROTTEN_FLESH), conditionsFromItem(Items.ROTTEN_FLESH))
+                            .criterion(hasItem(i), conditionsFromItem(i))
+                            .offerTo(exporter,
+                                    Global.MODID + ":" + getRecipeName(Items.DIRT) + "-" + getRecipeName(i));
+                }
             }
         };
     }

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": "minecraft:bone_meal",
+    "F": "minecraft:rotten_flesh",
+    "O": "minecraft:sand"
+  },
+  "pattern": [
+    "FBF",
+    "BOB",
+    "FBF"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:dirt"
+  }
+}
