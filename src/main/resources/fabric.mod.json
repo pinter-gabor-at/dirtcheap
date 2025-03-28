@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "dirtcheap",
+  "id": "${mod_id}",
   "version": "${version}",
   "name": "DirtCheap",
   "description": "Dirt must be dirt cheap!",
@@ -23,9 +23,9 @@
     ]
   },
   "depends": {
-    "fabricloader": ">=0.16.9",
-    "minecraft": "~1.21.4",
     "java": ">=21",
-    "fabric-api": "*"
+    "minecraft": "${minecraft_version}",
+    "fabricloader": "${loader_version}",
+    "fabric-api": "${fabric_version}"
   }
 }
