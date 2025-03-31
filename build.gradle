@@ -20,7 +20,6 @@ repositories {
 		name = 'Parchment'
 		url = 'https://maven.parchmentmc.org/'
 	}
-	maven { url = "https://maven.quiltmc.org/repository/release/" }
 }
 
 fabricApi {
@@ -33,9 +32,8 @@ dependencies {
 	// To change the versions see the gradle.properties file.
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings loom.layered() {
-		mappings "org.quiltmc:quilt-mappings:1.21.4+build.4:intermediary-v2"
 		officialMojangMappings()
-//		parchment "org.parchmentmc.data:parchment-${project.parchment_mappings}@zip"
+		parchment "org.parchmentmc.data:parchment-${project.parchment_mappings}@zip"
 	}
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	// Fabric API.
