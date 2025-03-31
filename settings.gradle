@@ -4,6 +4,13 @@ pluginManagement {
 			name = 'Fabric'
 			url = 'https://maven.fabricmc.net/'
 		}
+		repositories {
+			maven {
+				name = 'ParchmentMC'
+				url = 'https://maven.parchmentmc.org'
+			}
+		}
+		mavenLocal()
 		mavenCentral()
 		gradlePluginPortal()
 	}
