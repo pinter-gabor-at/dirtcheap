@@ -30,15 +30,16 @@ fabricApi {
 }
 
 dependencies {
-	// To change the versions see the gradle.properties file
+	// To change the versions see the gradle.properties file.
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	//	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	// Use official mappings + parchment for parameter names.
 	mappings loom.layered() {
 		officialMojangMappings()
 		parchment "org.parchmentmc.data:parchment-${project.parchment_mappings}@zip"
 	}
+	// Fabric loader.
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	// Fabric API
+	// Fabric API.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
@@ -51,8 +52,6 @@ idea {
 }
 
 processResources {
-	inputs.property "version", project.version
-
 	filesMatching("fabric.mod.json") {
 		expand "mod_id": project.mod_id,
 			"mod_version": project.mod_version,
@@ -74,6 +73,5 @@ java {
 }
 
 jar {
-	from("LICENSE") {
-	}
+	from("LICENSE")
 }
