@@ -1,10 +1,10 @@
 plugins {
 	id 'java-library'
-	id 'fabric-loom' version '1.10-SNAPSHOT'
+	id 'net.neoforged.moddev' version '2.0.80'
 	id 'idea'
 }
 
-version = project.mod_version + "+fabric+mc" + project.minecraft_version
+version = project.mod_version + "+neo+mc" + project.minecraft_version
 group = project.mod_group
 
 base {
@@ -13,32 +13,83 @@ base {
 
 repositories {
 	maven {
-		name = 'Fabric'
-		url = 'https://maven.fabricmc.net/'
-	}
-	maven {
 		name = 'Parchment'
 		url = 'https://maven.parchmentmc.org/'
 	}
 }
 
-fabricApi {
-	configureDataGeneration {
-		client = true
+dependencies {
+}
+
+neoForge {
+	version = project.neo_version
+
+	parchment {
+		parchmentArtifact = "org.parchmentmc.data:parchment-${project.parchment_mappings}@zip"
+	}
+
+	// Run configurations.
+	runs {
+		client {
+			client()
+		}
+
+		server {
+			server()
+			programArgument '--nogui'
+		}
+
+		data {
+			clientData()
+			// Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+			programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+		}
+
+		// applies to all the run configs above
+		configureEach {
+			// Recommended logging data for a userdev environment
+			// The markers can be added/remove as needed separated by commas.
+			// "SCAN": For mods scan.
+			// "REGISTRIES": For firing of registry events.
+			// "REGISTRYDUMP": For getting the contents of all registries.
+			systemProperty 'forge.logging.markers', 'REGISTRIES'
+
+			// Recommended logging level for the console
+			// You can set various levels here.
+			// Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
+			logLevel = org.slf4j.event.Level.DEBUG
+		}
+	}
+
+	mods {
+		// define mod <-> source bindings
+		// these are used to tell the game which sources are for which mod
+		// multi mod projects should define one per mod
+		"${mod_id}" {
+			sourceSet(sourceSets.main)
+		}
 	}
 }
 
-dependencies {
-	// To change the versions see the gradle.properties file.
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.layered() {
-		officialMojangMappings()
-		parchment "org.parchmentmc.data:parchment-${project.parchment_mappings}@zip"
-	}
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	// Fabric API.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+// This block of code expands all declared replace properties in the specified resource targets.
+// A missing property will result in an error. Properties are expanded using ${} Groovy notation.
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+	var replaceProperties = [
+		minecraft_version      : minecraft_version,
+		neo_version            : neo_version,
+		mod_id                 : mod_id,
+		mod_version            : mod_version
+	]
+	inputs.properties replaceProperties
+	expand replaceProperties
+	from "src/main/templates"
+	into "build/generated/sources/modMetadata"
 }
+// Include the output of "generateModMetadata" as an input directory for the build
+// this works with both building through Gradle and the IDE.
+sourceSets.main.resources.srcDir generateModMetadata
+// To avoid having to run "generateModMetadata" manually, make it run on every project reload
+neoForge.ideSyncTask generateModMetadata
 
 idea {
 	module {
@@ -55,7 +106,7 @@ processResources {
 		expand "mod_id": project.mod_id,
 			"mod_version": project.mod_version,
 			"version": project.version,
-			"minecraft_version": "~${project.minecraft_version}",
+			"minecraft_version": "${project.minecraft_version}",
 			"loader_version": ">=${project.loader_version}",
 			"fabric_version": ">=${project.fabric_version}"
 	}
