@@ -1,4 +1,4 @@
-# Minecraft Fabric DirtCheap Mod
+# Minecraft DirtCheap Mod
 
 Dirt must be dirt cheap. But in Minecraft cobblestone is cheaper than dirt, because it is free.
 
@@ -12,13 +12,16 @@ Since V1.1.0 there are two more recipes to create dirt from sand and clay.
 
 ![Recipe3](images/recipe3.png) ![Recipe4](images/recipe4.png)
 
+
 ## License
 
 Standard MIT license. Feel free to learn from it and incorporate it in your own projects.
 
+
 ## Source code
 
 Available on [GitLab](https://gitlab.com/pintergabor/dirtcheap.git) or on [GitHub](https://github.com/pinter-gabor-at/dirtcheap.git).
+
 
 ## For developers
 
