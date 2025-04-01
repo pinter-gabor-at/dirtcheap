@@ -13,7 +13,7 @@ import net.minecraft.world.item.Items;
 public class ModRecipeProvider extends RecipeProvider {
 	private final RecipeOutput exporter;
 
-	protected ModRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
+	public ModRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
 		super(registries, output);
 		this.exporter = output;
 	}
