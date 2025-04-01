@@ -1,9 +1,13 @@
 {
-  "schemaVersion": 1,
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "${mod_group}",
+
   "id": "${mod_id}",
   "version": "${version}",
-  "name": "DirtCheap",
-  "description": "Dirt must be dirt cheap!",
+    "metadata": {
+    "name": "DirtCheap",
+    "description": "Dirt must be dirt cheap!",
   "authors": [
     "Pintér Gábor <pinter.gabor@gmx.at>"
   ],
@@ -13,13 +17,9 @@
   },
   "license": "MIT",
   "icon": "eu.pintergabor.dirtcheap.icon.png",
-  "environment": "*",
   "entrypoints": {
-    "main": [
+    "init": [
       "eu.pintergabor.dirtcheap.Mod"
-    ],
-    "fabric-datagen": [
-      "eu.pintergabor.dirtcheap.Datagen"
     ]
   },
   "depends": {
