@@ -11,15 +11,13 @@ import net.minecraft.world.item.Items;
 
 
 public class ModRecipeProvider extends RecipeProvider {
-	private final RecipeOutput exporter;
 
 	public ModRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
 		super(registries, output);
-		this.exporter = output;
 	}
 
 	/**
-	 * Generate recipes
+	 * Generate recipes.
 	 */
 	@Override
 	protected void buildRecipes() {
@@ -32,7 +30,7 @@ public class ModRecipeProvider extends RecipeProvider {
 				.requires(Items.DIRT)
 				.unlockedBy(getHasName(Items.DIRT), has(Items.DIRT))
 				.unlockedBy(getHasName(i), has(i))
-				.save(exporter,
+				.save(output,
 					Global.MODID + ":" + getSimpleRecipeName(Items.DIRT) + "-" + getSimpleRecipeName(i));
 		}
 		// Generate two shapeless recipes:
@@ -52,7 +50,7 @@ public class ModRecipeProvider extends RecipeProvider {
 				.unlockedBy(getHasName(Items.BONE_MEAL), has(Items.BONE_MEAL))
 				.unlockedBy(getHasName(Items.ROTTEN_FLESH), has(Items.ROTTEN_FLESH))
 				.unlockedBy(getHasName(i), has(i))
-				.save(exporter,
+				.save(output,
 					Global.MODID + ":" + getSimpleRecipeName(Items.DIRT) + "-" + getSimpleRecipeName(i));
 		}
 	}
