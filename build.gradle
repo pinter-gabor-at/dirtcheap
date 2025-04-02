@@ -46,7 +46,7 @@ neoForge {
 			// where to output the resulting resource,
 			// and where to look for existing resources.
 			programArguments.addAll '--mod', project.mod_id, '--all',
-				'--output', file('src/main/generated/resources/').getAbsolutePath(),
+				'--output', file('src/main/generated/').getAbsolutePath(),
 				'--existing', file('src/main/resources/').getAbsolutePath()
 		}
 
