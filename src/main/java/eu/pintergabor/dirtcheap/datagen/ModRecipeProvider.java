@@ -37,7 +37,7 @@ public class ModRecipeProvider extends RecipeProvider {
 		// Mix SAND or CLAY with large amounts of BONE_MEAL and ROTTEN_FLESH to create DIRT.
 		for (Item i : new Item[]{Items.CLAY, Items.SAND}) {
 			shapeless(RecipeCategory.BUILDING_BLOCKS, Items.DIRT)
-				// Suggest a default arangement of requires items
+				// Suggest a default arrangement of requires items
 				.requires(Items.ROTTEN_FLESH)
 				.requires(Items.BONE_MEAL)
 				.requires(Items.ROTTEN_FLESH)

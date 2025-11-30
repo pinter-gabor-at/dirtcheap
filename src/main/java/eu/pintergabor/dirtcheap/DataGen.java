@@ -13,7 +13,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = Global.MODID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = Global.MODID, value = Dist.CLIENT)
 public class DataGen {
 
 	@SubscribeEvent
