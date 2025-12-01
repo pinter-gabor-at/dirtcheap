@@ -1,18 +1,17 @@
 package eu.pintergabor.dirtcheap.datagen;
 
+import java.util.concurrent.CompletableFuture;
+
 import eu.pintergabor.dirtcheap.Global;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 
-import org.jetbrains.annotations.NotNull;
 
-import java.util.concurrent.CompletableFuture;
-
-
-public class ModRecipeRunner extends RecipeProvider.Runner{
+public class ModRecipeRunner extends RecipeProvider.Runner {
 
 	public ModRecipeRunner(
 		PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

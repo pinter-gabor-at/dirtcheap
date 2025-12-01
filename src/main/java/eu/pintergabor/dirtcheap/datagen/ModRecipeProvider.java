@@ -21,7 +21,6 @@ public class ModRecipeProvider extends RecipeProvider {
 	 */
 	@Override
 	protected void buildRecipes() {
-
 		// Generate two shapeless recipes:
 		// Mix DIRT with BONE_MEAL or with ROTTEN_FLESH to create 2 DIRTs.
 		for (Item i : new Item[]{Items.BONE_MEAL, Items.ROTTEN_FLESH}) {
