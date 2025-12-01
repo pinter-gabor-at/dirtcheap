@@ -1,9 +1,10 @@
 plugins {
-	id 'fabric-loom' version '1.10-SNAPSHOT'
-	id 'maven-publish'
+	id 'java-library'
+	id 'fabric-loom' version '1.13-SNAPSHOT'
+	id 'idea'
 }
 
-version = project.mod_version+"+mc"+project.minecraft_version
+version = project.mod_version + "+fabric+mc" + project.minecraft_version
 group = project.mod_group
 
 base {
@@ -11,6 +12,14 @@ base {
 }
 
 repositories {
+	maven {
+		name = 'Fabric'
+		url = 'https://maven.fabricmc.net/'
+	}
+	maven {
+		name = 'Parchment'
+		url = 'https://maven.parchmentmc.org/'
+	}
 }
 
 fabricApi {
@@ -20,17 +29,28 @@ fabricApi {
 }
 
 dependencies {
-	// To change the versions see the gradle.properties file
+	// To change the versions see the gradle.properties file.
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	// Use official mappings + parchment for parameter names.
+	mappings loom.layered() {
+		officialMojangMappings()
+		parchment "org.parchmentmc.data:parchment-${project.parchment_mappings}@zip"
+	}
+	// Fabric loader.
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	// Fabric API
+	// Fabric API.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
-processResources {
-	inputs.property "version", project.version
+idea {
+	module {
+		// Download sources/javadoc jars for dependencies.
+		downloadSources = true
+		downloadJavadoc = true
+	}
+}
 
+processResources {
 	filesMatching("fabric.mod.json") {
 		expand "mod_id": project.mod_id,
 			"mod_version": project.mod_version,
@@ -42,15 +62,17 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
+	it.options.encoding = 'UTF-8'
 	it.options.release = 21
 }
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_21
 	targetCompatibility = JavaVersion.VERSION_21
+	toolchain.languageVersion = JavaLanguageVersion.of(21)
 }
 
 jar {
-	from("LICENSE") {
-	}
+	from("LICENSE")
+	exclude(".cache")
 }
