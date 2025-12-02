@@ -26,7 +26,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 	}
 
 	/**
-	 * Generate recipes
+	 * Generate recipes.
 	 */
 	@Override
 	@NotNull
