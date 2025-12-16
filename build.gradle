@@ -1,6 +1,7 @@
 plugins {
 	id 'java-library'
-	id 'fabric-loom' version '1.13-SNAPSHOT'
+	// https://fabricmc.net/develop/
+	id 'fabric-loom' version '1.14-SNAPSHOT'
 	id 'idea'
 }
 
