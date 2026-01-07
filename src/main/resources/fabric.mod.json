@@ -19,7 +19,7 @@
       "eu.pintergabor.dirtcheap.Mod"
     ],
     "fabric-datagen": [
-      "eu.pintergabor.dirtcheap.Datagen"
+      "eu.pintergabor.dirtcheap.ModDataGenerator"
     ]
   },
   "depends": {
