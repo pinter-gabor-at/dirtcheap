@@ -1,5 +1,7 @@
 package eu.pintergabor.dirtcheap.datagen;
 
+import static net.minecraft.data.recipes.RecipeProvider.getSimpleRecipeName;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 
@@ -10,6 +12,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
@@ -22,6 +25,15 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 		FabricPackOutput output,
 		CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
+	}
+
+	/**
+	 * Create recipe name.
+	 *
+	 * @param i from this {@link Item}
+	 */
+	private @NonNull String makeRecipeName(@NonNull Item i) {
+		return Global.MODID + ":" + getSimpleRecipeName(Items.DIRT) + "-" + getSimpleRecipeName(i);
 	}
 
 	/**
@@ -42,8 +54,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 						.requires(Items.DIRT)
 						.unlockedBy(getHasName(Items.DIRT), has(Items.DIRT))
 						.unlockedBy(getHasName(i), has(i))
-						.save(exporter,
-							Global.MODID + ":" + getSimpleRecipeName(Items.DIRT) + "-" + getSimpleRecipeName(i)));
+						.save(exporter, makeRecipeName(i)));
 				// Generate two shapeless recipes:
 				// Mix SAND or CLAY with large amounts of BONE_MEAL and ROTTEN_FLESH to create DIRT.
 				Stream.of(Items.CLAY, Items.SAND)
@@ -61,8 +72,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 						.unlockedBy(getHasName(Items.BONE_MEAL), has(Items.BONE_MEAL))
 						.unlockedBy(getHasName(Items.ROTTEN_FLESH), has(Items.ROTTEN_FLESH))
 						.unlockedBy(getHasName(i), has(i))
-						.save(exporter,
-							Global.MODID + ":" + getSimpleRecipeName(Items.DIRT) + "-" + getSimpleRecipeName(i)));
+						.save(exporter, makeRecipeName(i)));
 			}
 		};
 	}
