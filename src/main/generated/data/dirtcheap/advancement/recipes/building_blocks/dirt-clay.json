@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "dirtcheap:dirt-clay"
+        "recipes": "dirtcheap:dirt-clay"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

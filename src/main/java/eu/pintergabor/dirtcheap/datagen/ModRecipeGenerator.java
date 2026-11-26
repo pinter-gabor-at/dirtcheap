@@ -1,73 +1,66 @@
 package eu.pintergabor.dirtcheap.datagen;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.stream.Stream;
 
 import eu.pintergabor.dirtcheap.Global;
+import org.jspecify.annotations.NonNull;
 
-import net.minecraft.data.recipe.RecipeExporter;
-import net.minecraft.data.recipe.RecipeGenerator;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.book.RecipeCategory;
-import net.minecraft.registry.RegistryWrapper;
-
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
 
 
-public class ModRecipeGenerator extends FabricRecipeProvider {
+public final class ModRecipeGenerator extends RecipeProvider {
+
 	public ModRecipeGenerator(
-		FabricDataOutput output,
-		CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
-		super(output, registriesFuture);
+		final BootstrapContext<Recipe<?>> recipes,
+		final BootstrapContext<Advancement> advancements
+	) {
+		super(recipes, advancements);
 	}
 
 	/**
-	 * Generate recipes
+	 * Create recipe name.
+	 *
+	 * @param i from this {@link Item}
 	 */
-	@Override
-	protected RecipeGenerator getRecipeGenerator(
-		RegistryWrapper.WrapperLookup registries, RecipeExporter exporter) {
-		return new RecipeGenerator(registries, exporter) {
-			@Override
-			public void generate() {
-				// Generate two shapeless recipes:
-				// Mix DIRT with BONE_MEAL or with ROTTEN_FLESH to create 2 DIRTs.
-				for (Item i : new Item[]{Items.BONE_MEAL, Items.ROTTEN_FLESH}) {
-					createShapeless(RecipeCategory.BUILDING_BLOCKS, Items.DIRT, 2)
-						.input(i)
-						.input(Items.DIRT)
-						.criterion(hasItem(Items.DIRT), conditionsFromItem(Items.DIRT))
-						.criterion(hasItem(i), conditionsFromItem(i))
-						.offerTo(exporter,
-							Global.MODID + ":" + getRecipeName(Items.DIRT) + "-" + getRecipeName(i));
-				}
-				// Generate two shapeless recipes:
-				// Mix SAND or CLAY with large amounts of BONE_MEAL and ROTTEN_FLESH to create DIRT.
-				for (Item i : new Item[]{Items.CLAY, Items.SAND}) {
-					createShapeless(RecipeCategory.BUILDING_BLOCKS, Items.DIRT)
-						// Suggest a default arangement of input items
-						.input(Items.ROTTEN_FLESH)
-						.input(Items.BONE_MEAL)
-						.input(Items.ROTTEN_FLESH)
-						.input(Items.BONE_MEAL)
-						.input(i)
-						.input(Items.BONE_MEAL)
-						.input(Items.ROTTEN_FLESH)
-						.input(Items.BONE_MEAL)
-						.input(Items.ROTTEN_FLESH)
-						.criterion(hasItem(Items.BONE_MEAL), conditionsFromItem(Items.BONE_MEAL))
-						.criterion(hasItem(Items.ROTTEN_FLESH), conditionsFromItem(Items.ROTTEN_FLESH))
-						.criterion(hasItem(i), conditionsFromItem(i))
-						.offerTo(exporter,
-							Global.MODID + ":" + getRecipeName(Items.DIRT) + "-" + getRecipeName(i));
-				}
-			}
-		};
+	private @NonNull String makeRecipeName(@NonNull Item i) {
+		return Global.modName(getSimpleRecipeName(Items.DIRT) +
+			"-" + getSimpleRecipeName(i));
 	}
 
 	@Override
-	public String getName() {
-		return Global.MODID + " recipes";
+	public void buildRecipes() {
+		// Generate two shapeless recipes:
+		// Mix DIRT with BONE_MEAL or with ROTTEN_FLESH to create 2 DIRTs.
+		Stream.of(Items.BONE_MEAL, Items.ROTTEN_FLESH)
+			.forEach(i -> shapeless(RecipeCategory.BUILDING_BLOCKS, Items.DIRT, 2)
+				.requires(i)
+				.requires(Items.DIRT)
+				.unlockedBy(getHasName(Items.DIRT), has(Items.DIRT))
+				.unlockedBy(getHasName(i), has(i))
+				.save(output, makeRecipeName(i)));
+		// Generate two shapeless recipes:
+		// Mix SAND or CLAY with large amounts of BONE_MEAL and ROTTEN_FLESH to create DIRT.
+		Stream.of(Items.CLAY, Items.SAND)
+			.forEach(i -> shapeless(RecipeCategory.BUILDING_BLOCKS, Items.DIRT)
+				// Suggest a default arangement of requires items.
+				.requires(Items.ROTTEN_FLESH)
+				.requires(Items.BONE_MEAL)
+				.requires(Items.ROTTEN_FLESH)
+				.requires(Items.BONE_MEAL)
+				.requires(i)
+				.requires(Items.BONE_MEAL)
+				.requires(Items.ROTTEN_FLESH)
+				.requires(Items.BONE_MEAL)
+				.requires(Items.ROTTEN_FLESH)
+				.unlockedBy(getHasName(Items.BONE_MEAL), has(Items.BONE_MEAL))
+				.unlockedBy(getHasName(Items.ROTTEN_FLESH), has(Items.ROTTEN_FLESH))
+				.unlockedBy(getHasName(i), has(i))
+				.save(output, makeRecipeName(i)));
 	}
 }
