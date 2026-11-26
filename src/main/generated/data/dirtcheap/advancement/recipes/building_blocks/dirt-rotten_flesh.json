@@ -23,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "dirtcheap:dirt-rotten_flesh"
+        "recipes": "dirtcheap:dirt-rotten_flesh"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
