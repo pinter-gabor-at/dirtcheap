@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "dirtcheap:dirt-sand"
+        "recipes": "dirtcheap:dirt-sand"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
